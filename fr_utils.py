@@ -133,7 +133,9 @@ conv_shape = {
 def load_weights_from_FaceNet(FRmodel):
     # Load weights from csv files (which was exported from Openface torch model)
     weights = WEIGHTS
+    print ("Loading weights...")
     weights_dict = load_weights()
+    print ("After weights...")
 
     # Set layer weights of the model
     for name in weights:
@@ -151,8 +153,9 @@ def load_weights():
 
     for n in fileNames:
         paths[n.replace('.csv', '')] = dirPath + '/' + n
-
+    print (len(WEIGHTS))
     for name in WEIGHTS:
+        print (name)
         if 'conv' in name:
             conv_w = genfromtxt(paths[name + '_w'], delimiter=',', dtype=None)
             conv_w = np.reshape(conv_w, conv_shape[name])
